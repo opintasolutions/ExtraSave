@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ExtraSave</title>
+    <style>
+        body{
+  padding-top: 75px;
+  color: blue;
+}
+
+.search-container{
+  width: 300px;
+  display: block;
+  margin: 90 auto;
+  
+}
+
+input#productName{
+  margin: 0 auto;
+  width: 100%;
+  height: 45px;
+  padding: 0 20px;
+  font-size: 1rem;
+  border: 1px solid #D0CFCE;
+  outline: none;
+  &:focus{
+    border: 1px solid #008ABF;
+    transition: 0.35s ease;
+    color: #008ABF;
+    &::-webkit-input-placeholder{
+      transition: opacity 0.45s ease; 
+      opacity: 0;
+     }
+    &::-moz-placeholder {
+      transition: opacity 0.45s ease; 
+      opacity: 0;
+     }
+    &:-ms-placeholder {
+     transition: opacity 0.45s ease; 
+     opacity: 0;
+     }    
+   }
+ }
+
+.search-icon{
+  position: relative;
+  float: right;
+  width: 60px;
+  height: 45px;
+  top: -46px;
+  right: -45px;
+  color: green;
+}
+input{
+    color: blue;
+    font-family: Riona Sans Bold Italic;
+    font-size:160px;
+}
+
+    </style>
+</head>
+
+<body>
+    <img src="img/logo.PNG" alt="LOGO" width="160" height="60">
+    <br>
+    <br>
+    <br>
+    <main>
+        <div class="search-container"> <input id="productName" type="text" placeholder="Search On Flipkart" value=""> <button id="searchBtn" class="search-icon">Search</button>
+
+        </div>
+        <div id="container"></div>
+    </main>
+    <script>
+
+        // document.addEventListener("DOMContentLoaded", function () {
+        //     fetch("https://cors-anywhere.herokuapp.com/https://affiliate-api.flipkart.net/affiliate/api/mrrajnish.json")
+        //         .then((res) => res.json())
+        //         .then((data) => {
+        //             console.log(data.apiGroups.affiliate.apiListings);
+        //             let container = document.getElementById("container");
+        //             let options = Object.keys(data.apiGroups.affiliate.apiListings).slice();
+        //             container.innerHTML = "<ul>" + options.map((option) => {
+        //                 fetch(`https://cors-anywhere.herokuapp.com/${data.apiGroups.affiliate.apiListings[option].availableVariants["v1.1.0"].get}`, {
+        //                     method: "GET",
+        //                     headers: {
+        //                         "Fk-Affiliate-Id": "mrrajnish",
+        //                         "Fk-Affiliate-Token": "68233d4f014d45d889cd0c3d382221b2"
+        //                     }
+        //                 }).then(res => res.json())
+        //                     .then(data => data.products.map(product => console.log(product)))
+        //                     .catch(err => console.log(err));
+        //                 return ("<li>" + option + "</li>")
+        //             }) + "</ul>"
+        //             console.log(options);
+        //         })
+        //         .catch((err) => console.log(err));
+        // });
+
+        let searchBtn = document.getElementById("searchBtn");
+        searchBtn.addEventListener('click', function () {
+            let inputTxt = document.getElementById("productName").value;
+            let apiString = "https://affiliate-api.flipkart.net/affiliate/1.0/search.json?query=" + inputTxt + "&resultCount=10";
+
+            fetch(`https://cors-anywhere.herokuapp.com/${apiString}`, {
+                method: "GET",
+                headers: {
+                    "Fk-Affiliate-Id": "mrrajnish",
+                    "Fk-Affiliate-Token": "68233d4f014d45d889cd0c3d382221b2"
+                }
+            }).then(res => res.json())
+                .then(data => {
+                    console.log(data.products)
+                    let container = document.getElementById("container");
+                    let imgContainer = document.getElementById("productImg");
+                    container.innerHTML = "<ul>" + data.products.map(product => "<li>" + "<a target='blank' href=" + product.productBaseInfoV1.productUrl + ">" + product.productBaseInfoV1.title + "</a>" + "</li>") + "</ul>"
+                })
+                .catch(err => err);
+        })
+
+    </script>
+</body>
+
+</html>
