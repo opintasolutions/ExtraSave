@@ -1,0 +1,27 @@
+{
+  "name": "extrasave",
+  "version": "1.0.0",
+  "description": "A eCommerce web application which save your money as a unexpected way",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opintasolutions/ExtraSave.git"
+  },
+  "author": "Pranav Bhaskar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/opintasolutions/ExtraSave/issues"
+  },
+  "homepage": "https://github.com/opintasolutions/ExtraSave#readme",
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
+    "next": "^9.0.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}
