@@ -39,6 +39,7 @@ const Layout = ({children}) => {
       <style jsx global>{`
         body {
           margin: 0;
+          font-size: 14px;
           padding: 0;
           font-family: Arial;
         }

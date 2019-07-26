@@ -30,7 +30,7 @@ const IndexPage = ({data}) => {
 
 IndexPage.getInitialProps = async function() {
   const res = await fetch(
-    'https://affiliate-api.flipkart.net/affiliate/1.0/search.json?query=&resultCount=9',
+    'https://affiliate-api.flipkart.net/affiliate/1.0/search.json?query=best&resultCount=9',
     {
       method: 'GET',
       headers: {
